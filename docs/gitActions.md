@@ -51,8 +51,3 @@ Se comprueba la pestaña **Actions** del repositorio en GitHub para verificar qu
 
 ![Captura actions repossitorio](files/captura_actions.png)
 
-### 2.3.2. Verificación con el navegador
-
-Se añade en la pestaña **Settings** del repositorio en GitHub en el apartado de **Pages**. Aquí podemos encontrar el enlace a la página pero al ser la primera vez en **Branch** tenemos que indicarle la rama de `gh-pages` y guardarlo, al rato ya saldría arriba el enlace a la página.
-
-![Captura pages](files/captura_pages.png)
