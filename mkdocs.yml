@@ -12,11 +12,11 @@ site_name: Documentación de Calculadora Python # Define el título que aparecer
 nav:
   # El nombre de la sección en el menú: nombre_archivo.md
   - Home: index.md             # Primer elemento del menú, enlaza con el archivo 'index.md'.
-  - Uso: git.md                # Segundo elemento del menú, enlaza con el archivo 'git.md'.
-  - Uso: gitActions.md         # Tercer elemento del menú, enlaza con el archivo 'gitActions.md'.
-  - Uso: gitPages.md           # Cuarto elemento del menú, enlaza con el archivo 'gitPages.md'.
-  - Uso: docker.md             # Quinto elemento del menú, enlaza con el archivo 'docker.md'.
-  - Uso: conclusiones.md       # Sexto elemento del menú, enlaza con el archivo 'conclusiones.md'.
+  - Git: git.md                # Segundo elemento del menú, enlaza con el archivo 'git.md'.
+  - GitActions: gitActions.md         # Tercer elemento del menú, enlaza con el archivo 'gitActions.md'.
+  - GitPages: gitPages.md           # Cuarto elemento del menú, enlaza con el archivo 'gitPages.md'.
+  - Docker: docker.md             # Quinto elemento del menú, enlaza con el archivo 'docker.md'.
+  - Conclusiones: conclusiones.md       # Sexto elemento del menú, enlaza con el archivo 'conclusiones.md'.
   # Se pueden añadir subsecciones anidando listas:
   # - Referencia: 
   #   - Funciones: referencia/funciones.md
