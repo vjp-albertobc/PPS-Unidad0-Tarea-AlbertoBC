@@ -53,11 +53,11 @@ Esta actividad se relaciona con el resultado de aprendizaje y criterios de evalu
 
 A continuación, se presenta un índice con los enlaces a los documentos donde se detalla el proceso de cada fase de la actividad:
 
-* **[1. Creación del Repositorio (git.md)](docs/git.md)** Documentación del proceso de las operaciones realizadas para la creación del repositorio.  
-* **[2. GitHub Actions + MkDocs (gitActions.md)](docs/gitActions.md)** Documentación del proceso de creación y comprobación del WorkFlow para la generación de la documentación con MkDocs.  
-* **[3. GitHub Pages (gitPages.md)](docs/gitPages.md)** Documentación de la configuración del repositorio para habilitar GitHub Pages y mostrar la documentación.  
-* **[4. Contenedor NGINX con Docker (docker.md)](docs/docker.md)** Documentación de la creación y puesta en marcha del contenedor NGINX para publicar la documentación.  
-* **[5. Conclusiones (conclusiones.md)](docs/conclusiones.md)** Apartado de conclusiones personales sobre la tarea.  
+* **[1. Creación del Repositorio (git.md)](git.md)** Documentación del proceso de las operaciones realizadas para la creación del repositorio.  
+* **[2. GitHub Actions + MkDocs (gitActions.md)](gitActions.md)** Documentación del proceso de creación y comprobación del WorkFlow para la generación de la documentación con MkDocs.  
+* **[3. GitHub Pages (gitPages.md)](gitPages.md)** Documentación de la configuración del repositorio para habilitar GitHub Pages y mostrar la documentación.  
+* **[4. Contenedor NGINX con Docker (docker.md)](docker.md)** Documentación de la creación y puesta en marcha del contenedor NGINX para publicar la documentación.  
+* **[5. Conclusiones (conclusiones.md)](conclusiones.md)** Apartado de conclusiones personales sobre la tarea.  
 
 ---
 
@@ -83,4 +83,5 @@ Asegúrate que el nombre no contenga la letra ñ, tildes ni caracteres especiale
 ---
 
 ![Licencia: CC BY-NC-SA 4.0](https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png)
+
 
