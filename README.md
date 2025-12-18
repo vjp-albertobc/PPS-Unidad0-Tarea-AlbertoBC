@@ -20,4 +20,4 @@ La actividad tiene como objetivo poner en práctica conocimientos fundamentales 
 
 Toda la documentación detallada de las fases de la tarea se encuentra publicada en **GitHub Pages**, generada automáticamente con MkDocs y GitHub Actions.
 
-* **Documentación Publicada:** [https://TuUsuario.github.io/PPS-Unidad0-Tarea-AlbertoBC/](https://vjp-albertobc.github.io/PPS-Unidad0-Tarea-AlbertoBC/)
+* **Documentación Publicada:** [https://vjp-albertobc.github.io/Unidad1-TareaRA1-AlbertoBC/](https://vjp-albertobc.github.io/Unidad1-TareaRA1-AlbertoBC/)
