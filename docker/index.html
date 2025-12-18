@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Docker - PPS-Unidad0-Tarea-PPS</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">PPS-Unidad0-Tarea-PPS</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../git/" class="nav-link">Git</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../gitActions/" class="nav-link">GitActions</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../gitPages/" class="nav-link">GitPages</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Docker</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../conclusiones/" class="nav-link">Conclusiones</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../gitPages/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../conclusiones/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#4-contenedor-de-servicios-nginx-con-docker" class="nav-link">4. Contenedor de Servicios NGINX con Docker</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#41-preparacion-y-despliegue-del-contenedor" class="nav-link">4.1. Preparación y Despliegue del Contenedor</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="4-contenedor-de-servicios-nginx-con-docker">4.  Contenedor de Servicios NGINX con Docker</h1>
+<p>El objetivo de esta sección es crear un servicio web local utilizando <strong>Docker</strong> y la imagen de <strong>NGINX</strong> para publicar la documentación estática generada por MkDocs. Esto demuestra la capacidad de utilizar <strong>Bind Mounts</strong> para servir contenido generado por un proceso de CI/CD.</p>
+<h2 id="41-preparacion-y-despliegue-del-contenedor">4.1. Preparación y Despliegue del Contenedor</h2>
+<p>La documentación de MkDocs se encuentra en la rama <strong><code>gh-pages</code></strong>. Para que el contenedor NGINX pueda servirla, debemos asegurarnos de que el directorio local de trabajo se encuentre en esa rama.</p>
+<h3 id="paso-1-cambiar-a-la-rama-gh-pages">Paso 1: Cambiar a la rama <code>gh-pages</code></h3>
+<p>Primero, nos aseguramos de que el directorio local del repositorio contenga la documentación compilada (HTML, CSS, JS) al cambiar a la rama de despliegue:</p>
+<pre><code class="language-bash"># Navegar a la raíz del repositorio de la tarea
+cd PPS-Unidad0-Tarea-Tu_nombre
+
+# Cambiar a la rama que contiene la documentación estática
+git checkout gh-pages
+</code></pre>
+<h3 id="paso-2-ejecucion-del-contenedor-nginx-con-bind-mount">Paso 2: Ejecución del Contenedor NGINX con Bind Mount</h3>
+<p>Utilizaremos el comando <code>docker run</code> para crear y ejecutar el contenedor con las características solicitadas:</p>
+<ul>
+<li>
+<p><strong>Nombre del Contenedor:</strong> <code>PPSUnidad0-Tarea_Tu_nombre</code></p>
+</li>
+<li>
+<p><strong>Redirección de Puerto:</strong> Mapear el puerto <code>8085</code> del host al puerto interno <code>80</code> de NGINX (<code>-p 8085:80</code>).</p>
+</li>
+<li>
+<p><strong>Bind Mount:</strong> Montar el directorio de trabajo actual (<code>$(pwd)</code>, que es la rama <code>gh-pages</code>) al directorio de servicio de NGINX (<code>/usr/share/nginx/html</code>).</p>
+</li>
+</ul>
+<pre><code class="language-bash"># Comando de ejecución con Bind Mount:
+docker run -d \
+  --name $NOMBRE_CONTENEDOR \
+  -p 8085:80 \
+  -v &quot;$(pwd)&quot;:/usr/share/nginx/html \
+  nginx:latest
+
+</code></pre>
+<p><strong>Explicación del Bind Mount:</strong> El argumento <code>-v "$(pwd)":/usr/share/nginx/html</code> mapea el contenido <strong>en vivo</strong> de nuestra carpeta local (que ahora es la documentación HTML de <code>gh-pages</code>) directamente al directorio que NGINX utiliza para servir páginas web dentro del contenedor. Esto logra la publicación de la documentación.
+ ## 4.2. Evidencias de Creación y Visualización</p>
+<h3 id="evidencia-1-creacion-de-la-maquina">Evidencia 1: Creación de la Máquina</h3>
+<p>Se verifica que el contenedor se ha creado y está en ejecución correctamente.</p>
+<pre><code class="language-bash">docker ps
+</code></pre>
+<p><img alt="Captura del contenedor levantado" src="../files/captura_contenedorLevantado.png" /></p>
+<hr />
+<h3 id="evidencia-2-visualizacion-de-la-pagina-web">Evidencia 2: Visualización de la Página Web</h3>
+<p>Se accede a la dirección <code>http://localhost:8085</code> en el navegador para confirmar que NGINX está sirviendo la documentación de MkDocs montada desde el volumen local.</p>
+<p><img alt="Captura visualización web" src="../files/captura_visualizaci%C3%B3nWeb.png" /></p>
+<hr />
+<h3 id="evidencia-3-informacion-completa-del-contenedor">Evidencia 3: Información Completa del Contenedor</h3>
+<p>Se utiliza el comando <code>docker inspect</code> para obtener la configuración detallada del contenedor, demostrando el uso del Bind Mount y el mapeo de puertos.</p>
+<pre><code class="language-bash">docker inspect PPSUnidad0-Tarea_Tu_nombre
+</code></pre>
+<p><a href="../files/docker_inspect.json">Archivo con toda la información</a></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
